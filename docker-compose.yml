@@ -1,0 +1,18 @@
+version: '3'
+services:
+  rstudio:
+    image: rocker/verse:4
+    links: 
+      - centos
+    ports:
+      - "8787:8787"
+    environment:
+      DISABLE_AUTH: true
+    volumes:
+      - .:/workspace:cached
+  centos:
+    image: centos/python-38-centos7
+    command: /bin/sh -c "while sleep 1000; do :; done"
+    volumes:
+      # Mount the root folder that contains .git
+      - .:/workspace:cached

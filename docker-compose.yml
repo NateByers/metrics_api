@@ -9,10 +9,10 @@ services:
     environment:
       DISABLE_AUTH: true
     volumes:
-      - .:/workspace:cached
+      - ./rstudio:/home/rstudio/workspace
   centos:
     image: centos/python-38-centos7
     command: /bin/sh -c "while sleep 1000; do :; done"
     volumes:
       # Mount the root folder that contains .git
-      - .:/workspace:cached
+      - ./centos:/workspace
